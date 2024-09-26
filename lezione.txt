@@ -538,6 +538,73 @@ ma da file
 ❑ comando < file_input(Aperto in lettura)
 • Ridirezione dell’output
 ❑ comando > file_output(Aperto in scrittura
-(nuovo o sovrascritto))
+                       (nuovo o sovrascritto))
 ❑ comando >> file_output(Scrittura in
 append)
+
+
+
+Esempi
+
+• ls -l > file
+File conterrà il risultato di ls –l
+
+• sort < file > file2
+Ordina il contenuto di file scrivendo il risultato su
+file2
+
+• Cosa succede con > file ?
+
+Piping
+
+L’output di un comando può esser ridiretto a diventare l’input di
+un altro comando (piping)
+❑ In DOS: realizzazione con file temporanei (primo comando
+scrive sul file temporaneo, secondo legge da questo)
+❑ In UNIX: pipe come costrutto parallelo (l’output del primo
+comando viene reso disponibile al secondo e consumato
+appena possibile, non ci sono file temporanei)
+
+• Si realizza con il carattere speciale ‘|’
+
+
+Esempi di piping
+
+• who | wc -l
+❑ Conta gli utenti collegati
+• ls -l | grep ^d | rev | cut -d' ' -f1 | rev
+❑ Che cosa fa? Semplicemente mostra i nomi dei sottodirettori della
+directory corrente
+• ls -l lista i file del direttorio corrente
+• grep filtra le righe che cominciano con la lettera d (pattern ^d,
+vedere il man)
+ovvero le directory (il primo carattere rappresenta il tipo di file)
+• rev rovescia l’output di grep
+• cut taglia la prima colonna dell’output passato da rev,
+considerando lo spazio come delimitatore (vedi man)
+– quindi, poiché rev ha rovesciato righe prodotte da ls -l,
+estrae il nome dei direttori ‘al contrario’
+
+• rev raddrizza i nomi dei direttori
+
+Suggerimento: aggiungere i comandi uno alla volta (per vedere cosa
+viene prodotto in output da ogni pezzo della pipe)
+
+
+Esecuzione di comandi in Shell
+
+• In UNIX alcuni comandi sono eseguiti direttamente dalla
+shell corrente (comandi built-in)
+• Invece molti comandi sono eseguiti da una nuova shell
+creata al momento
+
+• La shell attiva mette in esecuzione una seconda shell che:
+❑ esegue le sostituzioni dei metacaratteri e dei parametri
+(parsing)
+❑ cerca il comando
+❑ esegue il comando
+
+• La shell padre attende il completamento dell'esecuzione
+della sotto-shell (comportamento sincrono)
+
+
