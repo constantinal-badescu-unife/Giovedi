@@ -527,7 +527,6 @@ Seleziona colonne da file. Output: video
 
 
 
-
 Ridirezione di input e output
 
 Possibile ridirigere input e/o output di un comando facendo
