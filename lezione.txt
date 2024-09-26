@@ -443,11 +443,11 @@ contenuto)
 Bit di protezione
 
 12    11   10    9 8 7      6 5 4       3 2 1
-0     0    0     1 1 1      1 0 0       1 0 0
-SUID SGID Sticky R W X      R W X       R W X
-                  User      Group       Others
+0     0    0     1 1 1      1 0 0 1 0 0
+SUID SGID Sticky R W X      R W X R W X
+                  User      Group Others
 
-                            PERMESSI
+PERMESSI
 
 Sticky bit:
 • per file eseguibili: il sistema cerca di mantenere in memoria
@@ -456,88 +456,3 @@ l’immagine del programma, anche se non è in esecuzione
 della directory possono rinominare o cancellare i file (altri
 utenti non possono, anche in caso di permessi che lo
 consentirebbero)
-
-
-
-SUID e SGID
-
-• SUID (Set User ID) (identificatore di utente effettivo
-❑ Si applica a un file di programma eseguibile solamente
-❑ Se vale 1, fa sì che l'utente che sta eseguendo quel
-programma venga considerato il proprietario di quel file
-(solo per la durata della esecuzione)
-
-• È necessario per consentire operazioni di lettura/scrittura su file
-di sistema, che l'utente non avrebbe il diritto di leggere/
-modificare.
-❑ Esempio: mkdir crea un direttorio, ma per farlo deve anche
-modificare alcune aree di sistema (file di proprietà di root),
-che non potrebbero essere modificate da un utente. Solo SUID
-lo rende possibile
-
-• SGID bit: come SUID bit, ma per il gruppo
-
-
-
-Protezione e diritti su file
-
-Per variare i bit di protezione:
-❑ chmod [u g o] [+ -] [rwx] <nomefile>
-
-I permessi possono essere concessi o negati dal solo
-proprietario del file
-Esempi di variazione dei bit di protezione:
-❑ chmod 0755 /usr/dir/file
-
-0       0       0       1 1 1   1 0 1   1 0 1
-SUID    SGID    Sticky  R W X   R W X   R W X
-                        User    Group   Others
-chmod u-w fileimportante
-Altri comandi:
-❑ chown <nomeutente> <nomefile>
-❑ chgrp <nomegruppo> <nomefile>
-
-
-Comandi, piping e ridirezione
-
-Comandi e input/output
-
-I comandi UNIX si comportano come FILTRI
-❑ filtro è un programma che riceve il suo ingresso da
-standard input e produce il risultato su standard
-output (trasformazione di dati)
-
-
-
-
-Comandi shell Linux: filtri
-
-Alcuni esempi:
-❑ grep <testo> [<file>...]
-Ricerca di testo. Input: (lista di) file. Output: video
-❑ tee <file>
-Scrive l’input sia su file, sia sul canale di output
-❑ sort [<file>...]
-Ordina alfabeticamente le linee. Input: (lista di) file.
-Output: video
-❑ rev <file>
-Inverte l’ordine delle linee di file. Output: video
-❑ cut [-options] <file>
-Seleziona colonne da file. Output: video
-
-
-
-Ridirezione di input e output
-
-Possibile ridirigere input e/o output di un comando facendo
-sì che non si legga da stdin (e/o non si scriva su stdout)
-ma da file
-❑ senza cambiare il comando
-❑ completa omogeneità tra dispositivi e file
-• Ridirezione dell’input
-❑ comando < file_input(Aperto in lettura)
-• Ridirezione dell’output
-❑ comando > file_output(Aperto in scrittura
-(nuovo o sovrascritto))
-❑ comando >> file_output(Scrittura in
-append)
