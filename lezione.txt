@@ -506,3 +506,22 @@ I comandi UNIX si comportano come FILTRI
 ❑ filtro è un programma che riceve il suo ingresso da
 standard input e produce il risultato su standard
 output (trasformazione di dati)
+
+
+
+
+Comandi shell Linux: filtri
+
+Alcuni esempi:
+❑ grep <testo> [<file>...]
+Ricerca di testo. Input: (lista di) file. Output: video
+❑ tee <file>
+Scrive l’input sia su file, sia sul canale di output
+❑ sort [<file>...]
+Ordina alfabeticamente le linee. Input: (lista di) file.
+Output: video
+❑ rev <file>
+Inverte l’ordine delle linee di file. Output: video
+❑ cut [-options] <file>
+Seleziona colonne da file. Output: video
+
