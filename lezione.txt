@@ -348,3 +348,92 @@ SIGTERM).
 
 
 
+Terminazione forzata di un processo
+
+È possibile ‘terminare forzatamente’ un processo tramite
+il comando kill
+
+Ad esempio:
+• kill –9 <PID> provoca l’invio di un segnale
+SIGKILL (forza la terminazione del processo che lo
+riceve e non può essere ignorato) al processo
+identificato da PID
+❑ Esempio: kill –9 6944
+
+Per conoscere il PID di un determinato processo, si può
+utilizzare il comando ps oppure il commando pgrep
+
+
+
+Segnali e interruzioni
+
+È possibile interrompere un processo (purché se ne
+abbiano i diritti...) kill –s <PID>
+provoca l’invio di un segnale (individuato dal parametro s)
+al processo identificato dal PID - vedremo ampiamente il
+concetto di segnale più avanti nel corso...
+kill –9 è solo un esempio: 9 corrisponde a SIGKILL,
+che provoca la terminazione incondizionata del
+processo (segnale non mascherabile) e dei figli
+(ricorsivamente)
+Alcuni tra i segnali più comuni:
+
+CTRL-C (invia un SIGINT, terminazione del processo attualmente in
+foreground, kill –2)
+CTRL-Z (invia un SIGTSTP, sospensione di un processo, kill -20)
+
+kill –l fornisce la lista dei segnali
+
+
+Utenti e gruppi
+
+• Sistema multiutente  problemi di privacy e di
+possibili interferenze: necessità di
+proteggere/nascondere informazione
+• Concetto di gruppo (es. staff, utenti, studenti, ...):
+possibilità di lavorare sugli stessi documenti
+• Ogni utente appartiene a un gruppo ma può far
+parte anche di altri a seconda delle esigenze e
+configurazioni
+• Comandi relativi all’identità dell’utente
+❑ whoami
+❑ id
+
+
+
+Informazioni legate ai file
+
+host133-63:~ carlo$ ls -l
+total 8(tot. spazio occupato (blocchi))
+drwx------ 3 paolo prof 102 May 18 22:49 Desktop
+drwx------ 3 paolo prof 102 May 18 22:49 Documents
+-rw-r--r-- 1 pippo stud 29 May 19 00:10 f1.txt
+-(tipo di file)
+rw-r--r--(permessi)
+ 1(numero di (hard) link) 
+ carlo(proprietario)
+  prof(gruppo)
+   0(dimensione (byte))
+    May 18 22:53(data ultima modifica)
+     f2(nome file)
+
+
+
+Protezione dei file
+
+• Molti utenti
+❑ Necessità di regolare gli accessi alle informazioni
+• Per un file, esistono 3 tipi di utilizzatori:
+❑ proprietario, user
+❑ gruppo del proprietario, group
+❑ tutti gli altri utenti, others
+• Per ogni tipo di utilizzatore, si distinguono tre modi di accesso
+al file:
+❑ lettura (r)
+❑ scrittura (w)
+❑ esecuzione (x) (per una directory significa list del
+contenuto)
+
+• Ogni file è marcato con
+❑ User-ID e Group-ID del proprietario
+❑ 12 bit di protezione
