@@ -543,3 +543,4 @@ ma da file
 ❑ comando >> file_output(Scrittura in
 append)
 
+
