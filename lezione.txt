@@ -542,5 +542,3 @@ ma da file
 (nuovo o sovrascritto))
 ❑ comando >> file_output(Scrittura in
 append)
-
-
