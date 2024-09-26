@@ -650,3 +650,50 @@ Non creare un file
 comandi ricorsivo
 senza una condizione
 di terminazione !!
+
+
+Rientranza della shell
+
+• Una shell è un programma che esegue i comandi, forniti da
+terminale o da file
+• Si invocano le shell come i normali comandi eseguibili con il
+loro nome
+sh [<filecomandi>]
+csh [<filecomandi>]
+
+• Le invocazioni attivano un processo che esegue la shell
+• Le shell sono RIENTRANTI: più processi possono
+condividere il codice senza errori e interferenze
+sh
+sh
+csh
+
+ps # quanti processi si vedono?
+(Il comando `ps` in un terminale Unix o Linux mostra 
+un elenco dei processi attualmente in esecuzione. 
+Se esegui semplicemente `ps` senza alcuna opzione, 
+vedrai solo i processi associati al tuo terminale corrente.
+
+Per vedere tutti i processi in esecuzione sul sistema, 
+puoi usare il comando `ps aux`. Ecco un esempio:
+
+```
+ps aux
+```
+
+Questo comando mostrerà una lista dettagliata di 
+tutti i processi attivi, inclusi quelli di altri utenti e 
+del sistema.
+
+Se vuoi contare quanti processi sono attualmente in 
+esecuzione, puoi combinare `ps` con `wc -l` 
+per contare le righe dell'output:
+
+```
+ps aux | wc -l
+```
+
+Questo comando ti darà il numero totale di processi 
+attualmente in esecuzione sul sistema.)
+
+
