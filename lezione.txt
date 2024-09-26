@@ -1,0 +1,350 @@
+Opzioni del comando ls...
+ls [–opzioni...] [file...]
+
+Alcune opzioni
+❑ l (long format): per ogni file una linea che contiene diritti,
+numero di link, proprietario del file, gruppo del proprietario,
+occupazione di disco (blocchi), data e ora dell’ultima modifica
+o dell’ultimo accesso e nome
+❑ t (time): la lista è ordinata per data dell’ultima modifica
+❑ u la lista è ordinata per data dell’ultimo accesso
+❑ r (reverse order): inverte l’ordine
+❑ a (all files): fornisce una lista completa (normalmente i file il cui
+nome comincia con il punto non vengono visualizzati)
+❑ F (classify): indica anche il tipo di file (eseguibile: *, directory: /,
+link simbolico: @, FIFO: |, socket: =, niente per file regolari)
+
+
+Link
+
+Le informazioni contenute in uno stesso file possono essere
+visibili come file diversi, tramite “riferimenti” (link) allo
+stesso file fisico
+
+• SO considera e gestisce la molteplicità possibile di
+riferimenti:
+❑ se un file viene cancellato, le informazioni sono veramente
+eliminate solo se non ci sono altri link a esso
+❑ Il link cambia i diritti? ➔ meglio di no
+
+Due tipi di link:
+
+• link fisici (si collegano le strutture del filesystem)
+• link simbolici (si collegano solo i nomi)
+
+
+Soft Link vs. Hard link
+
+• Link fisici (hard link): l'hard link ha lo stesso inode del
+file originario
+• Link simbolici (soft link o symlink): si collegano solo i
+nomi di file, soft-link e file originario hanno inode distinti
+
+
+Comando ln, link
+
+• Le informazioni contenute in uno stesso file possono
+essere visibili come file diversi, tramite “riferimenti” (link)
+allo stesso file fisico.
+• SO considera e tratta il tutto: se un file viene cancellato,
+le informazioni sono veramente eliminate solo se non ci
+sono altri link a esso
+
+comando: ln [-s]
+• ln /nome2/nome6/filetemp /nome1/temp
+
+
+Comandi vari di gestione
+
+• Creazione/gestione di directory
+❑ mkdir <nomedir> creazione di un nuovo direttorio
+❑ rmdir <nomedir> cancellazione di un direttorio
+❑ cd <nomedir> cambio di direttorio
+❑ pwd stampa il direttorio corrente
+❑ ls [<nomedir>] visualizz. contenuto del direttorio
+
+• Trattamento file
+❑ ln <vecchionome> <nuovonome> link
+❑ cp <filesorgente> <filedestinazione> copia
+❑ mv <vecchionome> <nuovonome> rinom. / spost.
+❑ rm <nomefile> cancellazione
+❑ cat <nomefile> visualizzazione
+
+
+cat
+
+Il comando cat stampa a video il contenuto di un file:
+
+cgiannelli@linuxdid:~$ cat /etc/passwd
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+...
+
+/etc/passwd is a text file that contains the attributes of (i.e., basic information
+about) each user or account on a computer running Linux or another Unix-like
+operating system
+
+
+
+more (e less)
+
+• Il comando cat effettua una semplicissima stampa del
+contenuto a video di un file. Per una visualizzazione a
+pagine, certamente più comoda per file di larghe
+dimensioni, è necessario utilizzare un comando di
+paginazione.
+
+• Il comando more permette di visualizzare un file una
+pagina per volta.
+
+• Esistono diverse alternative più recenti e potenti al
+comando more, tra cui va sicuramente segnalato il
+comando less (che permette anche di far scorrere la
+visualizzazione all’indietro).
+
+
+echo
+
+• Il comando echo stampa a video la stringa passatagli
+come parametro:
+
+cgiannelli@linuxdid:~$ echo Hello world!
+Hello world!
+
+• Il comando echo rappresenta la primitiva fondamentale
+che la shell mette a disposizione per stampare
+informazioni a video.
+
+
+sort
+
+• Il comando sort riordina le righe di un file in ordine alfabetico
+
+• Esempi e opzioni:
+sort nomefile.txt # elenca le righe del file nomefile.txt
+
+# in ordine alfabetico crescente
+
+sort –r nomefile.txt# elenca le righe del file nomefile.txt
+
+# in ordine alfabetico decrescente
+
+• Il comando sort ha molte opzioni:
+❑ -o <nomefileout> stampa su file
+❑ -n interpreta le righe del file come numeri
+❑ -k <n> ordina il file secondo il contenuto della n-esima
+colonna
+
+
+diff
+
+• Il comando diff stampa la differenza tra il contenuto di due file
+
+• Esempio:
+diff <file1> <file2> # mostra (solo) le righe diverse
+
+• Il comando diff è molto utilizzato nella gestione del codice
+sorgente
+
+
+wc
+
+• Il comando wc stampa il numero di righe, parole, o
+caratteri contenuti in un file
+
+• Esempi e opzioni:
+wc -l nomefile.txt # conta le linee (opzione l)
+# contenute nel file nomefile.txt
+wc -w nomefile.txt # conta le parole (opzione w)
+# contenute nel file nomefile.txt
+wc -c nomefile.txt # conta i caratteri (opzione c)
+# contenuti nel file nomefile.txt
+
+
+grep
+
+• Il comando grep seleziona le righe di un file che
+contengono la stringa passata come parametro e le
+stampa a video
+
+• Esempi:
+grep stringa nomefile.txt # seleziona le righe del file
+# nomefile.txt che contengono il testo “stringa”
+# e le stampa a video
+
+grep –c stringa nomefile.txt # conta le righe del file
+# nomefile.txt che contengono il testo “stringa”
+# e stampa il numero a video
+
+
+grep
+
+grep –r stringa dir # seleziona le righe di tutti i file
+
+# nella directory dir che contengono il
+# testo “stringa” e le stampa a video,
+# ricorsivo sulle sotto directory
+
+• Il comando grep ha numerosissime opzioni ed è
+utilizzatissimo, specialmente nella gestione e
+manipolazione di file di configurazione e di codice
+sorgente
+
+
+head
+
+• Il comando head mostra le prime righe di un file
+
+• Esempi e opzioni:
+head –n 15 nomefile.txt # mostra le prime 15 righe del file
+head –c 30 nomefile.txt # mostra i primi 30 caratteri del file
+
+
+tail
+
+• Il comando tail mostra le ultime righe di un file
+
+• Esempi e opzioni:
+tail –n 15 nomefile.txt # mostra le ultime 15 righe del file
+tail –c 30 nomefile.txt # mostra gli ultimi 30 caratteri del file
+
+time
+
+• Il comando time cronometra il tempo di esecuzione di un
+comando
+
+• Esempi:
+• cgiannelli@linuxdid:~$ time ls foto.jpeg
+foto.jpeg
+ls foto.jpeg 0,00s user 0,00s system 0% cpu 0,002 total
+
+
+who
+
+• Il comando who mostra gli utenti attualmente collegati al
+sistema (ovverosia che hanno eseguito il login sulla
+macchina)
+
+• Esempio:
+cgiannelli@linuxdid:~$ who
+cgiannelli :0 2013-12-15 11:01
+cgiannelli pts/0 2013-12-15 11:02 (:0)
+cgiannelli pts/1 2013-12-15 12:14 (:0)
+cgiannelli pts/3 2013-12-16 18:19 (:0)
+
+
+
+man
+
+• In ambiente Unix, il comando man rappresenta l’help di
+sistema
+
+• Esempio:
+man grep # mostra l’help (guida) del comando grep
+
+• Oltre al comando man, le moderne distribuzioni di Linux
+mettono a disposizione anche il comando info
+
+
+
+ps
+
+Un processo utente in genere viene attivato a partire da un comando
+(da cui prende il nome). Ad es., dopo aver mandato in esecuzione
+il comando hw, verrà visualizzato un processo dal nome hw.
+Tramite ps si può vedere la lista dei processi attivi
+cgiannelli@info1-linux:~$ ps
+PID TTY STAT TIME COMMAND
+4837 p2 S 0:00 -bash
+6945 p2 S 0:00 sleep 5s
+6948 p2 R 0:00 ps
+
+Comando ps molto utile quando si lancia l’esecuzione di
+programmi di sistema con errori di programmazione
+(guardare su man le varie opzioni ps)
+
+ps
+
+cgiannelli@linuxdid:~$ ps au
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root        2522  2.6  1.1 26102712 181788 tty7  Ssl+ 08:38   1:29 /usr/lib/xorg
+root        2528  0.0  0.0   3116  1760 tty1     Ss+  08:38   0:00 /sbin/agetty 
+alex        9292  0.0  0.0   8888  5280 pts/0    Ss   08:55   0:00 bash
+alex       17859  0.0  0.0  11220  4640 pts/0    R+   09:34   0:00 ps au
+cgiannelli@linuxdid:~$
+
+Cosa è il PID?
+Il PID (Process ID) è un identificatore univoco 
+assegnato dal sistema operativo a ogni processo 
+in esecuzione. 
+Serve a distinguere e gestire i vari processi 
+attivi nel sistema. Ad esempio, nel comando 
+ps, il PID è mostrato nella colonna "PID" e 
+permette di identificare specificamente 
+ogni processo.
+
+Esempio:
+```plaintext
+PID TTY      STAT   TIME COMMAND
+4837 p2       S      0:00 -bash
+6945 p2       S      0:00 sleep 5s
+6948 p2       R      0:00 ps
+```
+In questo caso, i processi hanno i 
+PID 4837, 6945 e 6948 rispettivamente.
+
+
+
+ps
+
+Alcune opzioni importanti:
+• a Mostra anche i processi degli altri utenti
+• u Fornisce nome dell’utente che ha lanciato il processo e
+l’ora in cui il processo è stato lanciato
+• x Mostra anche i processi senza terminale di controllo
+(processi demoni)
+
+Attenzione: si ricordi di non usare il trattino (-) per specificare le
+opzioni del comando ps, in quanto ps adotta la sintassi di
+tipo “extended BSD” che non prevede l’uso di trattini.
+
+Se si vuole un aggiornamento periodico dello stato dei processi
+correnti, si usi il comando top.
+
+
+
+top
+
+• Il comando top fornisce una visione dinamica in real-time
+del sistema corrente. Esso visualizza continuamente
+informazioni sull’utilizzo del sistema (memoria fisica e
+virtuale, CPU, ecc.) e sui processi che usano la maggiore
+share di CPU.
+
+• Esiste anche una versione più avanzata e moderna di
+top, chiamata htop. Al contrario di top, di solito htop non
+è incluso tra le utility di base disponibili sulle macchine
+Linux e va esplicitamente installato.
+
+
+
+pgrep e pkill
+
+Il comando pgrep restituisce i pid (process id) dei processi che
+corrispondono alle caratteristiche richieste (nome processo, utente, ...).
+Ad esempio, per ottenere il pid del processo Skype:
+cgiannelli@linuxdid:~$ pgrep skype
+9280
+
+Per ottenere il pid del processo demone sshd appartenente all’utente root:
+cgiannelli@linuxdid:~$ pgrep -u root sshd
+3488
+
+pkill presenta la stessa interfaccia comandi di pgrep, ma anziché stampare
+a video il pid dei processi, li uccide (in realtà invia loro un segnale
+SIGTERM).
+
+
+
