@@ -437,3 +437,22 @@ contenuto)
 • Ogni file è marcato con
 ❑ User-ID e Group-ID del proprietario
 ❑ 12 bit di protezione
+
+
+
+Bit di protezione
+
+12    11   10    9 8 7      6 5 4       3 2 1
+0     0    0     1 1 1      1 0 0       1 0 0
+SUID SGID Sticky R W X      R W X       R W X
+                  User      Group       Others
+
+                            PERMESSI
+
+Sticky bit:
+• per file eseguibili: il sistema cerca di mantenere in memoria
+l’immagine del programma, anche se non è in esecuzione
+• per directory: solo l'amministratore, il proprietario dei file (o
+della directory possono rinominare o cancellare i file (altri
+utenti non possono, anche in caso di permessi che lo
+consentirebbero)
