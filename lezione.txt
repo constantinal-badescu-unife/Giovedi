@@ -608,3 +608,45 @@ creata al momento
 della sotto-shell (comportamento sincrono)
 
 
+Esecuzione di un comando
+
+Il comando esegue avendo collegato
+• il proprio input al file di input
+• il proprio output al file di output
+specificati dalla shell di lancio
+
+
+
+
+Schema di un processore di comandi
+
+procedure shell (ambiente, filecomandi);
+< eredita ambiente (esportato) del padre, via copia>
+begin
+
+repeat
+
+<leggi comando da filecomandi>
+if < è comando built-in> then
+
+<modifica direttamente ambiente>;
+
+else if <è comandoeseguibile> then
+
+<esecuzione del comando via nuova shell>
+
+else if <è nuovofilecomandi> then
+
+shell (ambiente, nuovofilecomandi);
+
+else < errore>;
+endif
+until <fine file>
+
+end shell;
+Per abortire il comando corrente: CTRL-C
+
+Non creare un file
+comandi ricorsivo
+senza una condizione
+di terminazione !!
