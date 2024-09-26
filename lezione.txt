@@ -456,3 +456,53 @@ l’immagine del programma, anche se non è in esecuzione
 della directory possono rinominare o cancellare i file (altri
 utenti non possono, anche in caso di permessi che lo
 consentirebbero)
+
+
+
+SUID e SGID
+
+• SUID (Set User ID) (identificatore di utente effettivo
+❑ Si applica a un file di programma eseguibile solamente
+❑ Se vale 1, fa sì che l'utente che sta eseguendo quel
+programma venga considerato il proprietario di quel file
+(solo per la durata della esecuzione)
+
+• È necessario per consentire operazioni di lettura/scrittura su file
+di sistema, che l'utente non avrebbe il diritto di leggere/
+modificare.
+❑ Esempio: mkdir crea un direttorio, ma per farlo deve anche
+modificare alcune aree di sistema (file di proprietà di root),
+che non potrebbero essere modificate da un utente. Solo SUID
+lo rende possibile
+
+• SGID bit: come SUID bit, ma per il gruppo
+
+
+
+Protezione e diritti su file
+
+Per variare i bit di protezione:
+❑ chmod [u g o] [+ -] [rwx] <nomefile>
+
+I permessi possono essere concessi o negati dal solo
+proprietario del file
+Esempi di variazione dei bit di protezione:
+❑ chmod 0755 /usr/dir/file
+
+0       0       0       1 1 1   1 0 1   1 0 1
+SUID    SGID    Sticky  R W X   R W X   R W X
+                        User    Group   Others
+chmod u-w fileimportante
+Altri comandi:
+❑ chown <nomeutente> <nomefile>
+❑ chgrp <nomegruppo> <nomefile>
+
+
+Comandi, piping e ridirezione
+
+Comandi e input/output
+
+I comandi UNIX si comportano come FILTRI
+❑ filtro è un programma che riceve il suo ingresso da
+standard input e produce il risultato su standard
+output (trasformazione di dati)
