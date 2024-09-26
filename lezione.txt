@@ -697,3 +697,54 @@ Questo comando ti darà il numero totale di processi
 attualmente in esecuzione sul sistema.)
 
 
+
+Metacaratteri ed espansione
+
+Shell riconosce caratteri speciali (wildcard)
+
+* una qualunque stringa di zero o più caratteri in un nome di file
+
+? un qualunque carattere in un nome di file
+
+[zfc] un qualunque carattere, in un nome di file,
+
+compreso tra quelli nell'insieme. Anche range di
+valori: [a-d]. Per esempio ls [q-s]* lista i file con nomi
+che iniziano con un carattere compreso tra q e s
+
+# commento fino alla fine della linea
+
+\ escape (segnala di non interpretare il carattere
+successivo come speciale)
+
+
+
+Esempi con metacaratteri
+
+ls [a-p,1-7]*[c,f,d]?
+❑ elenca i file i cui nomi hanno come iniziale un
+carattere compreso tra 'a e 'p' oppure tra 1 e 7, e il cui
+penultimo carattere sia 'c', 'f', o 'd‘
+
+ls *\**
+❑ Elenca i file che contengono, in qualunque posizione,
+il carattere *
+
+
+Variabili nella shell
+
+In ogni shell è possibile definire un insieme di variabili
+(trattate come stringhe) con nome e valore
+❑ i riferimenti ai valori delle variabili si fanno con il
+carattere speciale $ ($nomevariabile)
+❑ si possono fare assegnamenti
+nomevariabile=$nomevariabile
+
+l-value r-value
+
+Esempi
+❑ X=2 # !!! NO spazio prima/dopo =
+❑ echo $X # visualizza 2
+❑ echo $PATH # mostra il contenuto della variabile PATH
+❑ PATH=/usr/local/bin:$PATH # aggiunge la
+directory /usr/local/bin alle directory del path di default
