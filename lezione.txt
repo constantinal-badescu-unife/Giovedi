@@ -525,3 +525,21 @@ Inverte l’ordine delle linee di file. Output: video
 ❑ cut [-options] <file>
 Seleziona colonne da file. Output: video
 
+
+
+
+Ridirezione di input e output
+
+Possibile ridirigere input e/o output di un comando facendo
+sì che non si legga da stdin (e/o non si scriva su stdout)
+ma da file
+❑ senza cambiare il comando
+❑ completa omogeneità tra dispositivi e file
+• Ridirezione dell’input
+❑ comando < file_input(Aperto in lettura)
+• Ridirezione dell’output
+❑ comando > file_output(Aperto in scrittura
+(nuovo o sovrascritto))
+❑ comando >> file_output(Scrittura in
+append)
+
